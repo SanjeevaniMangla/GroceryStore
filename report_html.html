@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .section {
+            page-break-before: always;
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .table th, .table td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #333;
+            color: white;
+            font-size: 18px;
+        }
+
+        /* Custom header styles */
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin: 0;
+        }
+
+        /* Custom section header styles */
+        h3 {
+            background-color: #444;
+            color: white;
+            padding: 10px 20px;
+            margin: 0;
+            font-size: 20px;
+        }
+
+        /* Custom section content styles */
+        .section-content {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Custom footer styles */
+        .footer {
+            text-align: right;
+            font-size: 16px;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Monthly Report</h2>
+    <div class="section-content" style="font-size: 20px;">
+        <div>We have created your monthly order report based on previous month.</div>
+        <div>It contains the brief details of the following:</div>
+        <div>1. Details about the orders you have done previous month</div>
+        <div>2. Details about the products purchased</div>
+        <div>3. Details about the categories visited</div>
+        <div>4. Details about ratings given</div>
+    </div>
+    
+    <!-- Section 1: Bookings -->
+    <div class="section">
+        <h3>Orders</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 10%;">S No.</th>
+                    <th style="width: 15%;">Number of Products</th>
+                    <th style="width: 20%;">Product Name</th>
+                    <th style="width: 20%;">Category Name</th>
+                    <th style="width: 15%;">Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in data.bookings %}
+                <tr>
+                    <td>{{ booking.serial_no }}</td>
+                    <td>{{ booking.number_of_products }}</td>
+                    <td>{{ booking.product_name }}</td>
+                    <td>{{ booking.category_name }}</td>
+                    <td>{{ booking.total_price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section 2: Shows -->
+    <div class="section">
+        <h3>Products purchased</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 10%;">S No.</th>
+                    <th style="width: 15%;">Name</th>
+                    <th style="width: 10%;">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in data.products %}
+                <tr>
+                    <td>{{ product.serial_no }}</td>
+                    <td>{{ product.storedName }}</td>
+                    <td>{{ product.storedPrice }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section 3: Theatres -->
+    <div class="section">
+        <h3>Categories visited</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 10%;">S No.</th>
+                    <th style="width: 30%;">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in data.categroies %}
+                <tr>
+                    <td>{{ category.serial_no }}</td>
+                    <td>{{ category.storedName }}</td>
+                    <td>{{ category.storedPlace }}</td>
+                    <td>{{ category.storedCapacity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Section 4: Ratings -->
+    <div class="section">
+        <h3>Ratings given</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">S No.</th>
+                    <th style="width: 25%;">Rating</th>
+                    <th style="width: 30%;">Show Name</th>
+                    <th style="width: 30%;">Theatre Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rating in data.ratings %}
+                <tr>
+                    <td>{{ rating.serial_no }}</td>
+                    <td>{{ rating.rating }}</td>
+                    <td>{{ rating.product_name }}</td>
+                    <td>{{ rating.category_name }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <p class="footer">
+        Regards,<br/>
+        Sanjeevani Mangla<br/>
+        Developer<br/>
+        <a href="mailto:sanjeevanimangla09@gmail.com">Email</a>
+    </p>
+
+</body>
+</html>
